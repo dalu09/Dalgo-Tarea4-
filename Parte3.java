@@ -9,6 +9,9 @@ de convertir cada via actual en doble via, determinar qué vias se deben
 convertir, de modo que se pueda transitar de cualquier punto a cualquier punto
 de la ciudad por dobles vias y que el costo de la conversión sea el mínimo
 posible.
+
+Lucia: Creo que se puede implementar el Algoritmo de Edmonds-Karp
+
  */
 
 public class Parte3 {
