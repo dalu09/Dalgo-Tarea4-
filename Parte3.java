@@ -102,19 +102,25 @@ public class Parte3 {
 
     public static void main(String[] args) {
         try {
+            Scanner scanner = new Scanner(System.in);
+
+            // Pedir el nombre del archivo desde la entrada
+            System.out.print("Introduce el nombre del archivo (ejemplo: grafo.txt): ");
+            String nombreArchivo = scanner.nextLine();
+
             // Leer el archivo de texto que contiene el grafo
-            File file = new File("grafo.txt");
-            Scanner scanner = new Scanner(file);
+            File file = new File(nombreArchivo);
+            Scanner fileScanner = new Scanner(file);
 
             // Inicializar variables para calcular el número de vértices
             int maxVertex = -1;
             List<int[]> edgesFromFile = new ArrayList<>();
 
             // Leer las aristas del archivo
-            while (scanner.hasNext()) {
-                int source = scanner.nextInt();
-                int destination = scanner.nextInt();
-                int weight = scanner.nextInt();
+            while (fileScanner.hasNext()) {
+                int source = fileScanner.nextInt();
+                int destination = fileScanner.nextInt();
+                int weight = fileScanner.nextInt();
 
                 // Guardar aristas temporalmente
                 edgesFromFile.add(new int[] { source, destination, weight });
@@ -122,7 +128,7 @@ public class Parte3 {
                 // Encontrar el vértice más grande
                 maxVertex = Math.max(maxVertex, Math.max(source, destination));
             }
-            scanner.close();
+            fileScanner.close();
 
             // El número total de vértices es el máximo vértice + 1 (si el índice comienza
             // desde 0)
@@ -144,7 +150,7 @@ public class Parte3 {
 
             long endTime = System.nanoTime(); // Detener el cronómetro
 
-            // Calcular el tiempo transcurrido en milisegundos o nanosegundos
+            // Calcular el tiempo transcurrido en nanosegundos
             long duration = endTime - startTime;
             System.out.println("Tiempo de ejecución: " + duration + " nanosegundos.");
 
