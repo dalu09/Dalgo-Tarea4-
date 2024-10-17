@@ -5,6 +5,8 @@ dentro de un subconjunto de la partición exista un camino en el grafo. Por
 ejemplo, para el siguiente grafo:
  */
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Parte2 {
@@ -14,10 +16,10 @@ public class Parte2 {
         List<Set<Integer>> components = new ArrayList<>();
         Set<Integer> visited = new HashSet<>();
 
-        for (Integer node : graph.keySet()) {
-            if (!visited.contains(node)) {
+        for (Integer nodo : graph.keySet()) {
+            if (!visited.contains(nodo)) {
                 Set<Integer> component = new HashSet<>();
-                bfs(node, graph, visited, component);
+                bfs(nodo, graph, visited, component);
                 components.add(component);
             }
         }
@@ -25,11 +27,11 @@ public class Parte2 {
     }
 
     // Método auxiliar para hacer BFS
-    private static void bfs(Integer startNode, Map<Integer, List<Integer>> graph, Set<Integer> visited,
+    private static void bfs(Integer nodoinicio, Map<Integer, List<Integer>> graph, Set<Integer> visited,
             Set<Integer> component) {
         Queue<Integer> queue = new LinkedList<>();
-        queue.add(startNode);
-        visited.add(startNode);
+        queue.add(nodoinicio);
+        visited.add(nodoinicio);
 
         while (!queue.isEmpty()) {
             Integer nodoactual = queue.poll();
@@ -46,31 +48,53 @@ public class Parte2 {
 
     // Método para agregar una arista entre dos nodos, asegurándose de que no se
     // sobrescriban las adyacencias
-    private static void addEdge(Map<Integer, List<Integer>> graph, int node1, int node2) {
-        graph.putIfAbsent(node1, new ArrayList<>());
-        graph.get(node1).add(node2);
+    private static void addEdge(Map<Integer, List<Integer>> graph, int nodo1, int nodo2) {
+        graph.putIfAbsent(nodo1, new ArrayList<>());
+        graph.get(nodo1).add(nodo2);
 
-        graph.putIfAbsent(node2, new ArrayList<>());
-        graph.get(node2).add(node1);
+        graph.putIfAbsent(nodo2, new ArrayList<>());
+        graph.get(nodo2).add(nodo1);
     }
 
     public static void main(String[] args) {
         // Crear el grafo como una lista de adyacencia
         Map<Integer, List<Integer>> graph = new HashMap<>();
-        Scanner scanner = new Scanner(System.in);
+        Scanner consoleScanner = new Scanner(System.in);
 
-        System.out.print("Introduce el número de aristas: ");
-        int numEdges = scanner.nextInt();
+        // Solicitar al usuario el nombre del archivo
+        System.out.print("Introduce el nombre del archivo (ej: grafo.txt): ");
+        String fileName = consoleScanner.nextLine(); // Leer el nombre del archivo
 
-        System.out.println("Introduce las aristas en formato u v (dos enteros (nodos) por línea): ");
-        for (int i = 0; i < numEdges; i++) {
-            int u = scanner.nextInt();
-            int v = scanner.nextInt();
-            addEdge(graph, u, v);
+        try {
+            // Leer el archivo que contiene las aristas
+            File file = new File(fileName); // Usar el nombre ingresado
+            Scanner fileScanner = new Scanner(file);
+
+            // Leer las aristas del archivo
+            while (fileScanner.hasNext()) {
+                int u = fileScanner.nextInt(); // Nodo 1
+                int v = fileScanner.nextInt(); // Nodo 2
+                int w = fileScanner.nextInt(); // Peso (ignorado)
+                addEdge(graph, u, v); // Solo usar nodos u y v
+            }
+
+            fileScanner.close();
+
+            // Medir el tiempo de ejecución del algoritmo BFS
+            long startTime = System.nanoTime();
+            List<Set<Integer>> components = findConnectedComponents(graph);
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+
+            // Mostrar el resultado
+            System.out.println("Tiempo de ejecución: " + duration + " nanosegundos.");
+            System.out.println("Componentes conectados: " + components);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo no encontrado: " + fileName);
+            e.printStackTrace();
         }
 
-        List<Set<Integer>> components = findConnectedComponents(graph);
-
-        System.out.println("Componentes conectados: " + components);
+        consoleScanner.close();
     }
 }

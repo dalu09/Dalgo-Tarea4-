@@ -17,12 +17,16 @@ Punto 1:
   lo ue indica que no hay un camino entre los nodos en cuestión.
 
 Punto 2:
-Entradas: La primera entrada tiene que ser el numero de aristas (conexiones entre nodos) y después introduce las aristas 
-en formato u v (dos enteros(nodos) por línea).
+Entradas: Lee un archivo .txt donde los grafo se muestran como 0 1 90 donde los primeros son 2 nodos y el 
+tercero es el peso.
+
+Salidas: la salida del programa son los componentes conectados de la siguiente manera :
+
+Componentes conectados: [{"ComponentesConectados1"}, {"ComponentesConectados2"},...]
+
 Punto 3:
- Entradas: No necesita de archivos extra. En el main es necesario indicar el numero de vertices en la linea 108 y 
- se añaden aristas con la siguiente función addEdge(source, destination, weight), donde source es el nodo de origen
- de la calle, destination el nodo de destino y weight el costo de convertir la calle a doble via. 
+ Entradas: Lee un archivo .txt donde los grafo se muestran como 0 1 90 donde los primeros son 2 nodos y el 
+tercero es el peso.
  
  Salidas: Imprime Las Aristas(vias) que deberian convertirse a doble via con el siguiente formato:
  Nodo Origen -- Nodo Destino == Costo
