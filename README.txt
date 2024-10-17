@@ -17,7 +17,8 @@ Punto 1:
   lo ue indica que no hay un camino entre los nodos en cuestión.
 
 Punto 2:
-
+Entradas: La primera entrada tiene que ser el numero de aristas (conexiones entre nodos) y después introduce las aristas 
+en formato u v (dos enteros(nodos) por línea).
 Punto 3:
  Entradas: No necesita de archivos extra. En el main es necesario indicar el numero de vertices en la linea 108 y 
  se añaden aristas con la siguiente función addEdge(source, destination, weight), donde source es el nodo de origen
