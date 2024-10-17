@@ -56,7 +56,7 @@ public class Parte3 {
             int rootU = find(subsets, u);
             int rootV = find(subsets, v);
 
-            // Une los árboles según su rango
+            // Une los árboles 
             if (subsets[rootU].rank < subsets[rootV].rank) {
                 subsets[rootU].parent = rootV;
             } else if (subsets[rootU].rank > subsets[rootV].rank) {
