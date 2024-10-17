@@ -1,7 +1,8 @@
 Cómo se debe ejecutar cada programa (formato del archivo de entrada y descripción de la salida)
 
 Punto 1:
- Entrada: El programa lee automaticamente un archivo .txt que se puede cambiar en la linea 140. 
+ Entrada: El programa lee automaticamente un archivo .txt con el formato que se indica en el enunciado,
+ el nombre del archivo se puede cambiar en la linea 140. 
 
  Salidas:
   Dijkstra: Imprime un arreglo donde el índice es el nodo de destino y el valor es la distancia 
@@ -26,6 +27,8 @@ Punto 3:
  Nodo Origen -- Nodo Destino == Costo
 
 Puto 4:
- Entradas: Recibe un grafo de capacidades, una fuente y un sumidero, que están definidos en el main.
+ Entradas: Recibe un grafo de capacidades, una fuente y un sumidero, que están definidos en el main. Cada fila y columna 
+ de la matriz corresponde a un nodo. En la matriz el valor de la posición [i][j] representa la capacidad de libros que 
+ pueden ser transportados del nodo i al nodo j.
 
  Salida: Imprime un entero que representa el flujo maximo de libros que se pueden transportar.  
